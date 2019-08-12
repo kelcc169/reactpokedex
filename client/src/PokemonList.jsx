@@ -13,7 +13,7 @@ function PokemonList({pokemon, handlePokeSelect}) {
               variant="outline-info" 
               size="lg" 
               onClick={() => handlePokeSelect(pokemon.name)} >
-              {pokemon.name}
+              {pokemon.name}!
             </Button>
           </Link>
       })

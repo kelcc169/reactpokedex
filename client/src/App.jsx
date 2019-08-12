@@ -37,13 +37,13 @@ function App() {
 
   // post a fave to the database?
   useEffect(() => {
-    if (pokeName !== '') {
+    if (addedFave !== '') {
       axios.post('/pokemon/', {name: pokeName}).then(res => {
         console.log('maybe this worked?', res.data)
         setFavorite(res.data)
       })
     }
-  }, [addedFave])
+  }, [addedFave, pokeName])
 
 
   return (
@@ -61,8 +61,8 @@ function App() {
       <Navbar bg="light" variant="light" fixed='bottom'>
         <Navbar.Brand >Pokedex</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link><Link to='/'><Button variant='light'>Home!</Button></Link></Nav.Link>
-          <Nav.Link><Link to='/favorites'><Button variant='light'>Favorites</Button></Link></Nav.Link>
+          <Nav.Item><Link to='/'><Button variant='light'>Home!</Button></Link></Nav.Item>
+          <Nav.Item><Link to='/favorites'><Button variant='light'>Favorites</Button></Link></Nav.Item>
         </Nav>
       </Navbar>
     </Router>

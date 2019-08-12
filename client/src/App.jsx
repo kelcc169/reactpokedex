@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Route,
   Link
-}from 'react-router-dom';
+} from 'react-router-dom';
 import './App.css';
 
 import PokemonList from './PokemonList';
@@ -16,7 +16,7 @@ function App() {
   const [allPokemon, setPokemon] = useState([])
   const [faves, setFaves] = useState([])
   const [pokeName, setPokeName] = useState('')
-  const [favorite, setFavorite] = useState('')
+  const [newFavorite, setNewFavorite] = useState('')
   const [addedFave, setAddedFave ] = useState('')
 
   // query for all pokemon 1-151, just once
@@ -33,17 +33,18 @@ function App() {
       console.log('faves?', res.data)
       setFaves(res.data)
     })
-  }, [favorite])
+  }, [newFavorite])
 
   // post a fave to the database?
   useEffect(() => {
     if (addedFave !== '') {
-      axios.post('/pokemon/', {name: pokeName}).then(res => {
-        console.log('maybe this worked?', res.data)
-        setFavorite(res.data)
+      console.log(addedFave)
+      axios.post('/pokemon/', {name: addedFave}).then(res => {
+        console.log('did this work?', res.data)
+        setNewFavorite(res.data)
       })
     }
-  }, [addedFave, pokeName])
+  }, [addedFave])
 
 
   return (
@@ -62,7 +63,7 @@ function App() {
         <Navbar.Brand >Pokedex</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Item><Link to='/'><Button variant='light'>Home!</Button></Link></Nav.Item>
-          <Nav.Item><Link to='/favorites'><Button variant='light'>Favorites</Button></Link></Nav.Item>
+          <Nav.Item><Link to='/favorites'><Button variant='light'>Favorites!</Button></Link></Nav.Item>
         </Nav>
       </Navbar>
     </Router>

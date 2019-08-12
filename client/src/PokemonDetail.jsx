@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ListGroup, Card, CardColumns, Button, CardGroup } from 'react-bootstrap';
+import { ListGroup, Card, CardColumns, Button } from 'react-bootstrap';
 import axios from 'axios'
 
 function PokemonDetail({pokeName, handleAddFave}) {

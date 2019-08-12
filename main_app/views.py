@@ -8,7 +8,6 @@ from rest_framework.response import Response
 # Create your views here.
 @api_view(['GET', 'POST'])
 def pokemon_list(request):
-  # CHANGE THIS TO WORK FOR POKEMON
   if request.method == 'GET':
     pokemon = Pokemon.objects.all()
     serializer = PokemonSerializer(pokemon, many=True)
@@ -19,3 +18,8 @@ def pokemon_list(request):
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def pokemon_detail(request):
+  if request.method == 'DELETE':
+    pokemon = Pokemon.objects.get(name=name)
